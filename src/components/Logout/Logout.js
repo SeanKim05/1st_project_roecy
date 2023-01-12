@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 function Logout() {
   const handleLogout = () => {
     localStorage.clear();
-    // window.location.reload();
   };
   const navigate = useNavigate();
   const go_main = () => {
@@ -19,7 +18,6 @@ function Logout() {
           handleLogout();
           go_main();
         }}
-        // onMouseDown={go_main}
       >
         Logout
       </button>

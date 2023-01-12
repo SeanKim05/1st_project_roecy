@@ -71,7 +71,7 @@ function Signup() {
   }, [email]);
 
   return (
-    <>
+    <div>
       {signedUp ? (
         go_login()
       ) : (
@@ -84,11 +84,7 @@ function Signup() {
                 <p className="signup-text-p">
                   Please fill in the information below:
                 </p>
-                <p
-                  ref={existRef}
-                  className={exist ? 'errPopUp' : 'offscreen'}
-                  aria-live="assertive"
-                >
+                <p ref={existRef} className={exist ? 'errPopUp' : 'offscreen'}>
                   Email has already been taken.
                 </p>
               </div>
@@ -102,8 +98,6 @@ function Signup() {
                   autoComplete="off"
                   onChange={e => setUser(e.target.value)}
                   required
-                  aria-invalid={validName ? 'false' : 'true'}
-                  aria-describedby="uidnote"
                   onFocus={() => setUserFocus(true)}
                   onBlur={() => setUserFocus(false)}
                 />
@@ -127,8 +121,6 @@ function Signup() {
                   ref={emailRef}
                   onChange={e => setEmail(e.target.value)}
                   required
-                  aria-invalid={validEmail ? 'false' : 'true'}
-                  aria-describedby="emailnote"
                   onFocus={() => setEmailFocus(true)}
                   onBlur={() => setEmailFocus(false)}
                 />
@@ -152,8 +144,6 @@ function Signup() {
                   ref={pwdRef}
                   onChange={e => setPwd(e.target.value)}
                   required
-                  aria-invalid={validPwd ? 'false' : 'ture'}
-                  aria-describedby="pwdnote"
                   onFocus={() => setPwdFocus(true)}
                   onBlur={() => setPwdFocus(false)}
                 />
@@ -171,7 +161,7 @@ function Signup() {
                 <button
                   type="button"
                   className="signup_btn"
-                  onMouseDown={sendHandler}
+                  onClick={sendHandler}
                   disabled={
                     !validName || !validPwd || !validEmail ? true : false
                   }
@@ -183,7 +173,7 @@ function Signup() {
           </section>
         </section>
       )}
-    </>
+    </div>
   );
 }
 export default Signup;

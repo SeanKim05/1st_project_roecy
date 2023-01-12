@@ -20,7 +20,6 @@ function Login() {
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
 
-  const invalidRef = useRef();
   const [invalid, setInvalid] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -33,7 +32,7 @@ function Login() {
   };
 
   const postHandlerLogin = e => {
-    // e.preventDefault();
+    e.preventDefault();
 
     fetch('http://localhost:8000/users/login', {
       method: 'POST',
@@ -51,16 +50,14 @@ function Login() {
           localStorage.setItem('token', response.token);
           go_main();
         } else {
-          setInvalid('activated');
+          setInvalid(true);
         }
       });
   };
 
   const handleKeyDown = e => {
     if (e.key === 'Enter') {
-      {
-        postHandlerLogin();
-      }
+      postHandlerLogin();
     }
   };
 
@@ -71,10 +68,6 @@ function Login() {
       tokenStatus !== null ? setLoggedIn(true) : setLoggedIn(false);
     }
   };
-
-  // const decodeToken = localStorage.getItem('token');
-  // const decode = jwtDecode(decodeToken);
-  // console.log(decode);
 
   useEffect(() => {
     setValidPwd(PWD_REGEX.test(pwd));
@@ -100,7 +93,7 @@ function Login() {
   }, []);
 
   return (
-    <>
+    <div>
       {loggedIn ? (
         <Account />
       ) : (
@@ -110,7 +103,6 @@ function Login() {
               <h1 className="login-text-h">Login</h1>
               <p className="login-text-p">Please enter your e-mail password:</p>
               <p
-                ref={invalidRef}
                 className={invalid ? 'errPopUp' : 'offscreen'}
                 aria-live="assertive"
               >
@@ -180,7 +172,7 @@ function Login() {
 
             <div className="link_content_login">
               <span className="span_link login_span">
-                Don't have an account?{' '}
+                Don't have an account?
               </span>
               <span className="login_span" onClick={go_signup}>
                 Create one
@@ -189,7 +181,7 @@ function Login() {
           </div>
         </section>
       )}
-    </>
+    </div>
   );
 }
 

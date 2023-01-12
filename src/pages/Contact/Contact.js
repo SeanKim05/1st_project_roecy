@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import './Contact.scss';
 
@@ -13,7 +12,6 @@ function Contact() {
   const nameRef = useRef('');
   const emailRef = useRef('');
   const contentRef = useRef('');
-  const navigate = useNavigate();
 
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -72,17 +70,8 @@ function Contact() {
         </div>
 
         <form className="contact_form">
-          <p
-            className={failed ? 'errPopUp' : 'offscreen'}
-            aria-live="assertive"
-          >
-            Error.
-          </p>
-
-          <p
-            className={success ? 'successPopUp' : 'offscreen'}
-            aria-live="assertive"
-          >
+          <p className={failed ? 'errPopUp' : 'offscreen'}>Error.</p>
+          <p className={success ? 'successPopUp' : 'offscreen'}>
             Thank you! <br />
             Your inquiry has been submitted successfully.
           </p>
@@ -108,8 +97,6 @@ function Contact() {
             ref={emailRef}
             onChange={e => setEmail(e.target.value)}
             required
-            aria-invalid={validEmail ? 'false' : 'true'}
-            aria-describedby="emailnote"
             onFocus={() => setEmailFocus(true)}
             onBlur={() => setEmailFocus(false)}
           />
